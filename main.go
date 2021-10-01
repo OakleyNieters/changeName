@@ -12,12 +12,12 @@ type Person struct {
 	BirthDate time.Time
 }
 
-func (ch Person) ChangeName(string, string) {
+func (ch *Person) ChangeName(string, string) {
 	fmt.Printf("%s %s", ch.FirstName, ch.LastName)
 
 }
 
-func (bd Person) Birthday() {
+func (bd *Person) Birthday(time.Time) {
 	start := time.Date(1994, 3, 2, 0, 0, 0, 0, time.UTC)
 	oneYearLater := start.AddDate(1, 0, 0)
 	fmt.Printf("oneYearLater: start.AddDate(1, 0, 0) = %v\n", oneYearLater)
@@ -45,13 +45,20 @@ func NewPerson(string, string, int, time.Time) Person {
 		FirstName: "Oakley",
 		LastName:  "Nieters",
 		Age:       27,
-		BirthDate: 1994, 03, 02,
+		BirthDate: time.Date(1994, 03, 02, 0, 0, 0, 0, time.UTC),
 	}
 	return p
 }
 
 func main() {
-	fmt.Print(NewPerson)
-	fmt.Print(changeName)
-
+	oakley := Person{
+		FirstName: "oakley",
+		LastName:  "nieters",
+		Age:       27,
+		BirthDate: time.Date(1994, 03, 02, 0, 0, 0, 0, time.UTC),
+	}
+	fmt.Print(oakley)
+	fmt.Print(changeNames)
+	
 }
+
