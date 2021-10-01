@@ -17,27 +17,21 @@ func (ch *Person) ChangeName(string, string) {
 
 }
 
-func (bd *Person) Birthday(time.Time) {
-	start := time.Date(1994, 3, 2, 0, 0, 0, 0, time.UTC)
-	oneYearLater := start.AddDate(1, 0, 0)
-	fmt.Printf("oneYearLater: start.AddDate(1, 0, 0) = %v\n", oneYearLater)
+func (bd *Person) Birthday() {
+	bd.BirthDate = time.Date(0,0,0,0,0,0,0, time.UTC)
+	today := time.Date(2021, 10, 01,0,0,0,0,time.UTC)
 
+	bd.Age = today.Year() - bd.BirthDate.Year()
+	bd.Age++
 }
 
-func changeName(Person, string, string) {
-	oakley := Person{
-		FirstName: "Oakley",
-		LastName:  "Niters",
-	}
-	fmt.Print(oakley)
+func changeName(p *Person, f string, l string) {
+	p.ChangeName(f, l)
 }
 
-func changeNames(Person, string, string) Person {
-	w := Person{
-		FirstName: "Oakley",
-		LastName:  "Nieters",
-	}
-	return w
+func changeNames(p Person, fn string, ln string) Person {
+	p.ChangeName(fn, ln)
+	return Person{}
 }
 
 func NewPerson(string, string, int, time.Time) Person {
@@ -58,7 +52,7 @@ func main() {
 		BirthDate: time.Date(1994, 03, 02, 0, 0, 0, 0, time.UTC),
 	}
 	fmt.Print(oakley)
-	fmt.Print(changeNames)
-	
+	fmt.Print(changeName)
+
 }
 
